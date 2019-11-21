@@ -2,18 +2,17 @@
   <div class="CardList">
   <!-----card----->
     <swiper class="swiperBox" :options="swiperOption" @mouseover.native="showUp=true" @mouseleave.native="showUp=false">
-      <swiper-slide class="slide1" @click.native="openContent1"><div class="text1">Bao VR Game</div></swiper-slide>
-      <swiper-slide class="slide2" @click.native="openContent2"><div class="text2">Bao2 VR Game</div></swiper-slide>
-      <swiper-slide class="slide3" @click.native="openContent3"><div class="text3">Giant Me VR Game</div></swiper-slide>
-      <swiper-slide class="slide4" @click.native="openContent4"><div class="text4">Thesis</div></swiper-slide>
-      <swiper-slide class="slide5" @click.native="openContent5"><div class="text5">Fire VR Game</div></swiper-slide>
-      <swiper-slide class="slide6" @click.native="openContent6"><div class="text6">AUO Intern</div></swiper-slide>
-      <swiper-slide class="slide7" @click.native="openContent7"><div class="text7">PACO</div></swiper-slide>
-      <swiper-slide class="slide8" @click.native="openContent8"><div class="text8">Bao Focus</div></swiper-slide>
-      <swiper-slide class="slide9" @click.native="openContent9"><div class="text9">DTD web</div></swiper-slide>
+      <swiper-slide class="slide1" @click.native="openContent('1')"><div class="text1">Bao VR Game</div></swiper-slide>
+      <swiper-slide class="slide2" @click.native="openContent('2')"><div class="text2">Bao2 VR Game</div></swiper-slide>
+      <swiper-slide class="slide3" @click.native="openContent('3')"><div class="text3">Giant Me VR Game</div></swiper-slide>
+      <swiper-slide class="slide4" @click.native="openContent('4')"><div class="text4">Thesis</div></swiper-slide>
+      <swiper-slide class="slide5" @click.native="openContent('5')"><div class="text5">Fire VR Game</div></swiper-slide>
+      <swiper-slide class="slide6" @click.native="openContent('6')"><div class="text6">AUO Intern</div></swiper-slide>
+      <swiper-slide class="slide7" @click.native="openContent('7')"><div class="text7">PACO</div></swiper-slide>
+      <swiper-slide class="slide8" @click.native="openContent('8')"><div class="text8">Bao Focus</div></swiper-slide>
+      <swiper-slide class="slide9" @click.native="openContent('9')"><div class="text9">DTD web</div></swiper-slide>
       <div class="swiper-pagination" slot="pagination" ></div>
-      <div class="swiper-button-prev" slot="button-prev">
-        <transition name="slide-fade-left">
+      <div class="swiper-button-prev" slot="button-prev">        <transition name="slide-fade-left">
           <svg viewBox="5 5 20 20" class="icon-chevron-left" v-if="showUp"> 
             <path d="M14.19 16.005l7.869 7.868-2.129 2.129-9.996-9.997L19.937 6.002l2.127 2.129z"/>
           </svg>
@@ -47,7 +46,7 @@ export default {
     return {
       showUp: false,
       ShowCard: false,
-      slideNumber: '',
+      slideNumber: String,
       //-----swiper-----
       swiperOption: {
         slidesPerView: 3,
@@ -69,12 +68,12 @@ export default {
           prevEl: '.swiper-button-prev'
         },
         breakpoints: {
-          1024: {
+          1022: {
             slidesPerView: 2,
             spaceBetween: 20,
             slidesPerGroup: 2,
           },
-          768: {
+          767: {
             slidesPerView: 1,
             spaceBetween: 10,
             slidesPerGroup: 1,
@@ -88,50 +87,10 @@ export default {
       this.ShowCard = false;
     },
     //-----openContent-----
-    openContent1() {
+    openContent(msg) {
       this.ShowCard = true;
       this.contentStyle = "showContent";
-      this.slideNumber = "1"
-    },
-    openContent2() {
-      this.ShowCard = true;
-      this.contentStyle = "showContent";
-      this.slideNumber = "2"
-    },
-    openContent3() {
-      this.ShowCard = true;
-      this.contentStyle = "showContent";
-      this.slideNumber = "3"
-    },
-    openContent4() {
-      this.ShowCard = true;
-      this.contentStyle = "showContent";
-      this.slideNumber = "4"
-    },
-    openContent5() {
-      this.ShowCard = true;
-      this.contentStyle = "showContent";
-      this.slideNumber = "5"
-    },
-    openContent6() {
-      this.ShowCard = true;
-      this.contentStyle = "showContent";
-      this.slideNumber = "6"
-    },
-    openContent7() {
-      this.ShowCard = true;
-      this.contentStyle = "showContent";
-      this.slideNumber = "7"
-    },
-    openContent8() {
-      this.ShowCard = true;
-      this.contentStyle = "showContent";
-      this.slideNumber = "8"
-    },
-    openContent9() {
-      this.ShowCard = true;
-      this.contentStyle = "showContent";
-      this.slideNumber = "9"
+      this.slideNumber = (msg);
     },
   }
 }

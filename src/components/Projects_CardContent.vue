@@ -1,9 +1,18 @@
 <template>
     <div class="cardBackground">
         <div class="cardContent">
-            <div v-bind:class="cardImage">
-                <button @click="closeContent"></button>
-               
+            <div v-bind:class="cardImage"></div>
+            <div>
+                <a @click="closeContent">
+                    <span class="left">
+                        <span class="circle-left"></span>
+                        <span class="circle-right"></span>
+                    </span>
+                    <span class="right">
+                        <span class="circle-left"></span>
+                        <span class="circle-right"></span>
+                    </span>
+                </a>
             </div>
         </div>
     </div>
@@ -19,11 +28,8 @@ export default {
     components: {
         cardImage: "",
     },
-    created: function() {
-        this.setImage();
-    },
     data() {
-        return{
+        return {
             setImage() {
                 let slideNumber = this.inputSlide;
                 if(slideNumber === '1') {
@@ -55,7 +61,10 @@ export default {
                 };
             }
         }
-    }
+    },
+    created: function() {
+        this.setImage();
+    },
 }
 </script>
 
@@ -132,38 +141,183 @@ button {
     background-size: contain;
     height: 100%;
 }
+
+//-----closeButtonStyle-----
+@mixin transition() {
+    transition: all .4s cubic-bezier(.215,.61,.355,1);
+}
+
+div {
+  a {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 91%;
+    top: 3%;
+    background-color: #ffffff;
+    border-radius: 50px;
+    opacity: 1;
+    @include transition();
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(247,149,29,0.5);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(247,149,29,0.5);
+    box-shadow: 0px 0px 30px 0px rgba(247,149,29,0.5);
+    
+    & > span {
+      background-color: #f5a700;
+      display: block;
+      height: 6px;
+      border-radius: 6px;
+      position: relative;
+      @include transition();
+      position: absolute;
+      top: 50%;
+      margin-top: -3px;
+      left: 9px;
+      width: 32px;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      -moz-justify-content: space-between;
+      -ms-justify-content: space-between;
+
+      span {
+        display: block;
+        background-color: #ed7f00;
+        width: 6px;
+        height: 6px;
+        border-radius: 6px;
+        @include transition();
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      &.left {
+        transform: rotate(45deg);
+        transform-origin: center;
+
+        .circle-left {
+          @include transition();
+          margin-left: 0;
+        }
+
+        .circle-right {
+          @include transition();
+          margin-left: 26px;
+        }
+      }
+
+      &.right {
+        transform: rotate(-45deg);
+        transform-origin: center;
+
+        .circle-left {
+          @include transition();
+          margin-left: 0;
+        }
+
+        .circle-right {
+          @include transition();
+          margin-left: 26px;
+        }
+      }
+    }
+
+    &:hover {
+      & > span {
+        background-color: #2faee0;
+        @include transition();
+
+        span {
+          @include transition();
+          background-color: #008ac9;
+        }
+
+        &.left {
+
+          .circle-left {
+            @include transition();
+            margin-left: 26px;
+          }
+
+          .circle-right {
+            @include transition();
+            margin-left: 0;
+          }
+        }
+
+        &.right {
+
+          .circle-left {
+            @include transition();
+            margin-left: 26px;
+          }
+
+          .circle-right {
+            @include transition();
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
 //-----RWD-----
-@media (max-width: 843px) { 
+@media (max-width: 968px) { 
     .cardContent {
-        background-color: #fff;
-        border-radius: 15px;
-        margin: auto;
-        margin-top: 1%;
         width: 601px;
         height: 425px;
         margin-top: 16%;
     }
+    div {
+        a {
+            left: 92%;
+        }
+    }
 }
-@media (max-width: 608px) { 
+@media (max-width: 645px) { 
     .cardContent {
-        background-color: #fff;
-        border-radius: 15px;
-        margin: auto;
         margin-top: 1%;
         width: 435px;
         height: 308px;
         margin-top: 30%;
     }
+    div {
+        a {
+            left: 89%;
+        }
+    }
 }
-@media (max-width: 440px) { 
+@media (max-width: 486px) { 
     .cardContent {
-        background-color: #fff;
-        border-radius: 15px;
-        margin: auto;
         margin-top: 1%;
         width: 333px;
         height: 236px;
-        margin-top: 60%;
+        margin-top: 45%;
+    }
+    div {
+        a {
+            left: 88%;
+        }
+    }
+}
+@media (max-width: 455px) {
+    div {
+        a {
+            left: 86%;
+        }
+    }
+}
+@media (max-width: 376px) {
+    div {
+        a {
+            left: 83%;
+        }
     }
 }
 </style>

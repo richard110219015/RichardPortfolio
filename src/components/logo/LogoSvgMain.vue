@@ -68,8 +68,8 @@ svg {
 	top: 10px;
 	z-index: 1;
 	&:hover {
-      color: #ffad1f;
-	  animation: footprintScale 1s 1;
+      //color: #ffad1f;
+	  //animation: footprintScale 1s 1;
     }
 }
 @keyframes flip{
